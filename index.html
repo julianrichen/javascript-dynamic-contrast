@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>JavaScript: Dynamic Contrast</title>
+    <style type="text/css">
+* {
+    font-family: "Open Sans","Source Sans Pro","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+#wrapper {
+    max-width: 960px;
+    min-width: 320px;
+    margin: 0px auto;
+}
+#wrapper h1 {
+    padding: 0 20px;
+    position: relative;
+}
+#wrapper p {
+    padding: 0 20px;
+}
+#examples .box {
+    border-radius: 5px;
+    color: #000000;
+    float: left;
+    display: block;
+    height: 200px;
+    line-height: 200px;
+    margin: 20px;
+    text-align: center;
+    width: 200px;
+}
+#examples .box.light {
+    color: #ffffff;
+}
+    </style>
+</head>
+<body>
+<a href="javascript-dynamic-contrast"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<div id="wrapper">
+    <h1>JavaScript: Dynamic Contrast</h1>
+    <p>Change text color automaticlly depending on the background, changes every 5 seconds.</p>
+    <div id="examples"> </div>
+</div>
+
+<!-- getColorContrast Code -->
+<script id="code" type="text/javascript" src="src/dynamic-contrast.js"></script>
+
+<!-- Code for page -->
+<script type="text/javascript">
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('')
+        color   = '';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function getNewColor() {
+    var container = document.getElementById("examples");
+    container.innerHTML = '';
+    for (var i = 0; i < 12; i++) {
+        var temp       = document.createElement("div"),
+            extraClass = '',
+            color      = getRandomColor();
+        if(getColorContrast(color) == "light") {
+            extraClass = " light";
+        } else if(getColorContrast(color) == "light") {
+            extraClass = " dark";
+        }
+        temp.setAttribute("class", "box" + extraClass);
+        temp.setAttribute("style", "background: #" + color);
+        temp.innerHTML = "#" + color;
+        container.appendChild(temp);
+    }
+}
+
+getNewColor();
+
+setInterval(function() {
+    getNewColor();
+}, 5000);
+</script>
+</body>
+</html>
+

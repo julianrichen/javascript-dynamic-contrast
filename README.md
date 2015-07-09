@@ -31,7 +31,7 @@ console.log(getColorContrast("rgba( 255 , 255 , 255 , 1)")); // dark
 
 ## Example
 Select the users custom background `#users_bg`, get the background color & then set the the class of the background to `light-text` if the background will be too dark for normal text.
-```
+```js
 var bg      = document.getElementById("users_bg"),
     bgColor = bg.style.backgroundColor;
 
